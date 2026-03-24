@@ -29,19 +29,15 @@ export const TransmitSection = () => {
     triggerMood('working');
 
     try {
-      const res = await fetch('/api/transmit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
+      const mailtoLink = `mailto:Karanj542002@gmail.com?subject=${encodeURIComponent(values.subject)}&body=${encodeURIComponent(`Name: ${values.name}\nEmail: ${values.email}\n\nMessage:\n${values.message}`)}`;
+      window.location.href = mailtoLink;
 
-      if (res.ok) {
-        setStatus('success');
-        triggerMood('happy', 5000);
-      } else {
-        setStatus('error');
-        triggerMood('idle');
-      }
+      setStatus('success');
+      triggerMood('happy', 5000);
+      
+      setTimeout(() => {
+        setStatus('idle');
+      }, 3000);
     } catch (e) {
       setStatus('error');
       triggerMood('idle');

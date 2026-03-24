@@ -81,7 +81,7 @@ export const QuestCard = ({ quest }: { quest: Quest }) => {
         </a>
       </div>
 
-      <div className="absolute bottom-4 right-4 rotate-[-15deg] opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute top-12 right-6 rotate-[-15deg] opacity-0 group-hover:opacity-100 transition-opacity">
         <span className="font-bangers text-2xl text-[#E63946] border-4 border-[#E63946] px-2 py-1 bg-[#E63946]/10">
           MISSION COMPLETE
         </span>
