@@ -31,7 +31,7 @@ export const SagaSection = () => {
 
           <div className="relative z-10 w-full flex-1 min-h-[150px] mb-4 overflow-hidden border-2 border-[#E63946]/30">
             <img
-              src="/anime-place.jpg"
+              src="./anime-place.jpg"
               alt="Anime Location"
               className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
             />
