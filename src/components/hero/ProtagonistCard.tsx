@@ -43,7 +43,7 @@ export const ProtagonistCard = () => {
           ) : (
             <div className="w-full h-full border-4 border-[#E63946] overflow-hidden rotate-[-3deg] shadow-[0_0_15px_rgba(230,57,70,0.5)]">
               <img
-                src="/anime-profile.jpg"
+                src="./anime-profile.jpg"
                 alt="Protagonist Profile"
                 className="w-full h-full object-cover scale-[1.02]"
                 title="Add your picture in public folder and update the src!"
