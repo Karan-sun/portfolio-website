@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #E63946;
+  --color-secondary: #1D3557;
+  --color-accent: #F4A261;
+  --color-highlight: #A8DADC;
+  --color-bg-dark: #0D0D0D;
+  --color-bg-panel: #111827;
+  --color-bg-card: rgba(255, 255, 255, 0.04);
+  --color-border-glow: rgba(230, 57, 70, 0.4);
+  --color-text-primary: #F1FAEE;
+  --color-text-muted: #8892A4;
+  --color-text-accent: #F4A261;
+
+  --font-bangers: "Bangers", cursive;
+  --font-nunito: "Nunito", sans-serif;
+  --font-share: "Share Tech Mono", monospace;
+  
+  --animate-glitch: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-primary);
+  font-family: var(--font-nunito);
+  overflow-x: hidden;
+}
+
+/* Base custom classes for Manga theme */
+.manga-panel {
+  border: 4px solid #000;
+  background-color: var(--color-bg-panel);
+  position: relative;
+  overflow: hidden;
+}
+.manga-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+
+/* Halftone dot pattern background */
+.halftone-bg {
+  background-image: radial-gradient(var(--color-primary) 1px, transparent 1px);
+  background-size: 8px 8px;
+  background-position: 0 0;
+  opacity: 0.04;
+}
+
+/* Torn scroll logic */
+.torn-scroll {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 
+    100% 95%, 98% 100%, 96% 96%, 94% 100%, 92% 95%, 90% 100%, 
+    88% 95%, 86% 100%, 84% 96%, 82% 100%, 80% 95%, 78% 100%, 
+    76% 96%, 74% 100%, 72% 95%, 70% 100%, 68% 96%, 66% 100%, 
+    64% 95%, 62% 100%, 60% 96%, 58% 100%, 56% 95%, 54% 100%, 
+    52% 96%, 50% 100%, 48% 95%, 46% 100%, 44% 96%, 42% 100%, 
+    40% 95%, 38% 100%, 36% 96%, 34% 100%, 32% 95%, 30% 100%, 
+    28% 96%, 26% 100%, 24% 95%, 22% 100%, 20% 96%, 18% 100%, 
+    16% 95%, 14% 100%, 12% 96%, 10% 100%, 8% 95%, 6% 100%, 
+    4% 96%, 2% 100%, 0% 95%
+  );
+}
+
+@keyframes glitch {
+  0%   { text-shadow: 2px 0 var(--color-primary), -2px 0 var(--color-highlight); }
+  25%  { text-shadow: -2px 0 var(--color-primary), 2px 0 var(--color-highlight); clip-path: inset(30% 0 40% 0); }
+  50%  { text-shadow: 2px 2px var(--color-primary), -2px -2px var(--color-highlight); clip-path: inset(10% 0 60% 0); }
+  75%  { clip-path: inset(60% 0 10% 0); transform: translateX(-2px); }
+  100% { text-shadow: none; clip-path: none; transform: none; }
+}
+
+.hover-glitch:hover {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Page transitions utility hiding */
+.ink-transition-layer {
+  pointer-events: none;
+  z-index: 100;
 }
